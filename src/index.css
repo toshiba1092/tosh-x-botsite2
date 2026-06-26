@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-gray-950 text-white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-600;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-yellow-500 text-gray-900 font-semibold
+           hover:from-amber-400 hover:to-yellow-400 transition-all shadow-lg shadow-amber-500/20;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 rounded-lg border border-amber-500/50 text-amber-400 font-semibold
+           hover:bg-amber-500/10 transition-all;
+  }
+
+  .card {
+    @apply rounded-xl border border-gray-800 bg-gray-900/80 backdrop-blur-sm;
+  }
+
+  .card-premium {
+    @apply rounded-xl border border-amber-500/20 bg-gray-900/80 hover:border-amber-500/40
+           hover:shadow-lg hover:shadow-amber-500/10 transition-all;
+  }
+
+  .input {
+    @apply w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2
+           focus:outline-none focus:border-amber-500 transition-colors;
+  }
+
+  .badge {
+    @apply text-xs px-2 py-0.5 rounded-full font-medium;
+  }
+
+  .badge-premium {
+    @apply badge bg-amber-500/20 text-amber-400;
+  }
+
+  .badge-success {
+    @apply badge bg-emerald-500/20 text-emerald-400;
+  }
+
+  .badge-danger {
+    @apply badge bg-red-500/20 text-red-400;
+  }
+
+  .nav-item {
+    @apply relative px-4 py-3 flex items-center gap-2 whitespace-nowrap transition-all;
+  }
+
+  .nav-item-active {
+    @apply nav-item text-amber-400;
+  }
+
+  .nav-item-inactive {
+    @apply nav-item text-gray-400 hover:text-gray-200;
+  }
+
+  .glow-pulse {
+    @apply animate-pulse;
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent;
+  }
+
+  .shadow-gold {
+    box-shadow: 0 4px 20px -4px rgba(245, 158, 11, 0.25);
+  }
+
+  .shadow-gold-lg {
+    box-shadow: 0 10px 40px -10px rgba(245, 158, 11, 0.35);
+  }
+
+  .border-glow {
+    box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.2);
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Custom animations for live sync pulse */
+@keyframes live-sync {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+}
+
+.live-sync-pulse {
+  animation: live-sync 0.3s ease-in-out;
+}
+
+/* Premium gold shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-gold {
+  background: linear-gradient(
+    90deg,
+    rgba(245, 158, 11, 0) 0%,
+    rgba(245, 158, 11, 0.1) 50%,
+    rgba(245, 158, 11, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Shield icon pulse reflect animation */
+@keyframes shield-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 2px rgba(251, 191, 36, 0.5));
+  }
+  25% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8));
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 12px rgba(251, 191, 36, 1));
+  }
+  75% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8));
+  }
+}
+
+.shield-icon-pulse {
+  animation: shield-pulse 2s ease-in-out infinite;
+}
+
+.shield-icon-pulse:hover {
+  animation: none;
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 16px rgba(251, 191, 36, 1));
+}
